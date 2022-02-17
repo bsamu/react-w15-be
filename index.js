@@ -59,6 +59,34 @@ app.get('/api/secret', (req, res) => {
     console.log(autoHead)
 })
 
+app.get('/api/todo', (req, res) => {
+    const autoHead = req.header('authorization')
+    if (!autoHead) return res.sendStatus(401)
+
+    const username = autoHead.split(':::')[0]
+    const password = autoHead.split(':::')[1]
+
+    const user = users.find(user => user.name === username && user.password === password)
+
+    if (!user) return res.sendStatus(401);
+
+    res.json(user.todos)
+})
+
+app.post('/api/login', (req, res) => {
+    const autoHead = req.header('authorization')
+    if (!autoHead) return res.sendStatus(401)
+
+    const username = autoHead.split(':::')[0]
+    const password = autoHead.split(':::')[1]
+
+    const user = users.find(user => user.name === username && user.password === password)
+
+    if (!user) return res.sendStatus(401);
+
+    res.sendStatus(200)
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
