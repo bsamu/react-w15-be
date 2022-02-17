@@ -12,5 +12,12 @@
         "todos": [
             "vasalni"
         ]
+    },
+    {
+        "name": "user",
+        "password": "123",
+        "todos": [
+            "asf"
+        ]
     }
 ]
