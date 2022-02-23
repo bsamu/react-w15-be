@@ -11,8 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.26.0",
+    "blob": "^0.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.2",
-    "nodemon": "^2.0.15"
+    "filereader": "^0.10.3",
+    "nodemon": "^2.0.15",
+    "xhr2": "^0.2.1"
   }
 }

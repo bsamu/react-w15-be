@@ -8,6 +8,9 @@ app.use(cors())
 app.use(express.json())
 
 const users = require('./users.json')
+const { sendStatus } = require("express/lib/response");
+
+let mySessionStorage = {}; //done
 
 app.post('/api/signup', (req, res) => {
     if (!req.body.name || !req.body.password) {
@@ -29,13 +32,14 @@ app.post('/api/signup', (req, res) => {
 })
 
 app.post('/api/todo', (req, res) => {
-    const autoHead = req.header('authorization')
-    if (!autoHead) return res.sendStatus(401)
+    const sessionId = req.header('authorization')
+    if (!sessionId) return res.sendStatus(401)
 
-    const username = autoHead.split(':::')[0]
-    const password = autoHead.split(':::')[1]
+    // const username = autoHead.split(':::')[0]
+    // const password = autoHead.split(':::')[1]
 
-    const user = users.find(user => user.name === username && user.password === password)
+    // const user = users.find(user => user.name === username && user.password === password)
+    const user = mySessionStorage[sessionId];
     if (!user) return res.sendStatus(401);
 
     const todoMess = req.body.todo
@@ -60,16 +64,21 @@ app.get('/api/secret', (req, res) => {
 })
 
 app.get('/api/todo', (req, res) => {
-    const autoHead = req.header('authorization')
-    if (!autoHead) return res.sendStatus(401)
+    // const autoHead = req.header('authorization')
+    // if (!autoHead) return res.sendStatus(401)
 
-    const username = autoHead.split(':::')[0]
-    const password = autoHead.split(':::')[1]
+    // const username = autoHead.split(':::')[0]
+    // const password = autoHead.split(':::')[1]
 
-    const user = users.find(user => user.name === username && user.password === password)
+    // const user = users.find(user => user.name === username && user.password === password)
 
+    // if (!user) return res.sendStatus(401);
+
+    const sessionId = req.header('authorization')
+    if (!sessionId) return res.sendStatus(401)
+
+    const user = mySessionStorage[sessionId];
     if (!user) return res.sendStatus(401);
-
     res.json(user.todos)
 })
 
@@ -83,9 +92,28 @@ app.post('/api/login', (req, res) => {
     const user = users.find(user => user.name === username && user.password === password)
 
     if (!user) return res.sendStatus(401);
+    const sessionId = Math.random().toString();
+    mySessionStorage[sessionId] = user;
 
+    setTimeout(() => {
+        console.log("Session ended!")
+        delete mySessionStorage[sessionId];
+    }, 30 * 1000 * 10);
+
+    console.log(mySessionStorage)
+    res.json(sessionId)
+    res.status(200)
+}) //done
+
+app.delete("/api/logout", (req, res) => {
+    console.log("header:", req.headers)
+    const sessionId = req.header('authorization')
+    console.log("my session id:", sessionId)
+    if (!sessionId) return res.sendStatus(401)
+    delete mySessionStorage[sessionId]
+    console.log("my session storage:", mySessionStorage)
     res.sendStatus(200)
-})
+}) //done
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

@@ -1,65 +1,37 @@
 [
     {
-        "name": "user1",
-        "password": "123",
-        "todos": [
-            "kavet fozni"
-        ]
-    },
-    {
-        "name": "user2",
-        "password": "123",
-        "todos": [
-            "vasalni"
-        ]
-    },
-    {
-        "name": "user",
-        "password": "123",
-        "todos": [
-            "asf",
-            "todo",
-            "asdafaf"
-        ]
-    },
-    {
-        "name": "user6",
-        "password": "123",
-        "todos": [
-            "asfafsaasgsadgdsagasdg",
-            "4864456654654"
-        ]
-    },
-    {
-        "name": "user7",
-        "password": "123",
-        "todos": []
-    },
-    {
-        "name": "user8",
-        "password": "123",
-        "todos": []
-    },
-    {
-        "name": "user11",
-        "password": "123",
-        "todos": []
-    },
-    {
-        "name": "user12",
-        "password": "123",
-        "todos": []
-    },
-    {
-        "name": "asd",
-        "password": "123",
-        "todos": []
-    },
-    {
         "name": "anyád",
         "password": "123",
         "todos": [
             "anyád"
+        ]
+    },
+    {
+        "name": "user1",
+        "password": "pw1",
+        "todos": [
+            "adsgfag",
+            "fadhdgjgdj",
+            "vasalni",
+            "adsgfagdaga",
+            "agdhhagdhadh",
+            "agdhhagdhadh",
+            "anyád",
+            "apdgkmpsamgaANYÁD",
+            "ÉDESANYÁDMŰKÖDJ"
+        ]
+    },
+    {
+        "name": "user2",
+        "password": "pw2",
+        "todos": [
+            "asd",
+            "asfsaf",
+            "agffggfgf",
+            "ninonénéonioo",
+            "anyád",
+            "adgdagagd",
+            "agdhhagdhadh"
         ]
     }
 ]
